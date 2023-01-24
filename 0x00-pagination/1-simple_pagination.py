@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+""" Simple pagination module
+This module contains Python code that illustrates the application
+of pagination to retrieve information from a given dataset
+"""
 import csv
 import math
 from typing import List
@@ -9,6 +14,8 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """ __init__ method
+        Instantiates the required variables """
         self.__dataset = None
 
     def dataset(self) -> List[List]:
