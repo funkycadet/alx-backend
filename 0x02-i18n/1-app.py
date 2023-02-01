@@ -8,10 +8,10 @@ class Config:
     """ config class """
     LANGUAGES = ["en", "fr"]
 
-    def __init__(self):
+    def __init__(self) -> None:
         """ __init__ method """
         self.locale = "en"
-        self.timezzone = "UTC"
+        self.timezone = "UTC"
 
 
 app = Flask(__name__)
