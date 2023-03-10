@@ -29,7 +29,7 @@ def get_user():
     Retrieves a user based on id
     """
     login_user = request.args.get('login_as', None)
-    if login_user is not None and int(login_user) in users.keys():
+    if login_user != None and int(login_user) in users.keys():
         return users.get(int(login_user))
     return None
 
@@ -45,23 +45,19 @@ def before_request():
 
 @babel.localeselector
 def get_locale():
-    """ get_locale method
-    Set locale language from available languages """
-    data = request.query_string.decode('utf-8').split('&')
-    data_table = dict(map(
-        lambda i: (i if '=' in i else '{}='.format(i)).split('='),
-        data
-    ))
-    if 'locale' in data_table:
-        if data_table['locale'] in app.config["LANGUAGES"]:
-            return data_table['locale']
+    """
+    Set locale language from available languages
+    """
+    locale = request.args.get('locale')
+    if locale in app.config['LANGUAGES']:
+        return locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', strict_slashes=False)
 def root():
     """ Homepage URL """
-    return render_template(('5-index.html'))
+    return render_template('5-index.html')
 
 
 if __name__ == '__main__':
